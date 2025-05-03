@@ -106,65 +106,70 @@
       .append('xhtml:div')
       .attr('class', 'p-3 h-full')
   
-    content.append('xhtml:div')
-      .attr('class', 'h-full flex flex-col')
-      .html(d => `
-        <div class="flex justify-between items-start mb-2">
-          <h3 class="text-lg font-bold text-gray-900 truncate">${d.data.name}</h3>
-          <span class="text-sm font-medium text-gray-500 ml-2">${d.data.title}</span>
-        </div>
+      content.append('xhtml:div')
+  .attr('class', 'h-full flex flex-col')
+  .html(d => `
+    <div class="flex justify-between items-start mb-2">
+      <h3 class="text-lg font-bold text-gray-900 truncate">${d.data.name}</h3>
+      <span class="text-sm font-medium text-gray-500 ml-2">${d.data.title}</span>
+    </div>
 
-        <div class="flex items-baseline">
-  <span class="text-xs font-medium text-gray-500 mr-1">Mgmt Ratio:</span>
-  <span class="text-sm text-gray-700">
-    ${d.data.managementCostRatio || 0}
-  </span>
-</div>
+    <div class="grid grid-cols-2 gap-x-4 gap-y-2 flex-grow">
+      <!-- Level -->
+      <div class="flex items-baseline">
+        <span class="text-xs font-medium text-gray-500 mr-1">Level:</span>
+        <span class="text-sm text-gray-700">${d.data.level || '-'}</span>
+      </div>
 
-<div class="flex items-baseline">
-  <span class="text-xs font-medium text-gray-500 mr-1">Level:</span>
-  <span class="text-sm text-gray-700">
-    ${d.data.level || '-'}
-  </span>
-</div>
-        
-        <div class="grid grid-cols-2 gap-x-4 gap-y-2 flex-grow">
-          <div class="flex items-baseline">
-            <span class="text-xs font-medium text-gray-500 mr-1">Salary:</span>
-            <span class="text-sm font-semibold text-blue-600">$${d.data.salary.toLocaleString()}</span>
-          </div>
-          
-          <div class="flex items-baseline">
-            <span class="text-xs font-medium text-gray-500 mr-1">Descendants:</span>
-            <span class="text-sm text-gray-700">${d.data.totalDescendants}</span>
-          </div>
-          
-          <div class="flex items-baseline">
-            <span class="text-xs font-medium text-gray-500 mr-1">IC Cost:</span>
-            <span class="text-sm text-gray-700">$${d.data.icCost?.toLocaleString() || '0'}</span>
-          </div>
-          
-          <div class="flex items-baseline">
-            <span class="text-xs font-medium text-gray-500 mr-1">Mgmt Cost:</span>
-            <span class="text-sm text-gray-700">$${d.data.managementCost?.toLocaleString() || '0'}</span>
-          </div>
-          
-          <div class="flex items-baseline">
-            <span class="text-xs font-medium text-gray-500 mr-1">Total Cost:</span>
-            <span class="text-sm font-semibold text-gray-900">$${d.data.totalCost?.toLocaleString() || '0'}</span>
-          </div>
-          
-          <div class="flex items-baseline">
-            <span class="text-xs font-medium text-gray-500 mr-1">Department:</span>
-            <span class="text-sm text-gray-700">${d.data.department || '-'}</span>
-          </div>
-          
-          <div class="flex items-baseline">
-            <span class="text-xs font-medium text-gray-500 mr-1">Location:</span>
-            <span class="text-sm text-gray-700">${d.data.location || '-'}</span>
-          </div>
-        </div>
-      `)
+      <!-- Salary -->
+      <div class="flex items-baseline">
+        <span class="text-xs font-medium text-gray-500 mr-1">Salary:</span>
+        <span class="text-sm font-semibold text-blue-600">$${d.data.salary.toLocaleString()}</span>
+      </div>
+
+      <!-- Department -->
+      <div class="flex items-baseline">
+        <span class="text-xs font-medium text-gray-500 mr-1">Department:</span>
+        <span class="text-sm text-gray-700">${d.data.department || '-'}</span>
+      </div>
+
+      <!-- Location -->
+      <div class="flex items-baseline">
+        <span class="text-xs font-medium text-gray-500 mr-1">Location:</span>
+        <span class="text-sm text-gray-700">${d.data.location || '-'}</span>
+      </div>
+
+      <!-- Descendants -->
+      <div class="flex items-baseline">
+        <span class="text-xs font-medium text-gray-500 mr-1">Descendants:</span>
+        <span class="text-sm text-gray-700">${d.data.totalDescendants}</span>
+      </div>
+
+      <!-- IC Cost -->
+      <div class="flex items-baseline">
+        <span class="text-xs font-medium text-gray-500 mr-1">IC Cost:</span>
+        <span class="text-sm text-gray-700">$${d.data.icCost?.toLocaleString() || '0'}</span>
+      </div>
+
+      <!-- Management Cost -->
+      <div class="flex items-baseline">
+        <span class="text-xs font-medium text-gray-500 mr-1">Mgmt Cost:</span>
+        <span class="text-sm text-gray-700">$${d.data.managementCost?.toLocaleString() || '0'}</span>
+      </div>
+
+      <!-- Total Cost -->
+      <div class="flex items-baseline">
+        <span class="text-xs font-medium text-gray-500 mr-1">Total Cost:</span>
+        <span class="text-sm font-semibold text-gray-900">$${d.data.totalCost?.toLocaleString() || '0'}</span>
+      </div>
+
+      <!-- Management Ratio -->
+      <div class="flex items-baseline col-span-2">
+        <span class="text-xs font-medium text-gray-500 mr-1">Mgmt Ratio:</span>
+        <span class="text-sm text-gray-700">${d.data.managementCostRatio || 0}</span>
+      </div>
+    </div>
+  `);
     node.filter(d => d._children || d.children)
       .append('circle')
       .attr('r', 16)
