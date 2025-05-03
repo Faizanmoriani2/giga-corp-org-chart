@@ -1,17 +1,3 @@
-<template>
-  <div class="w-full h-screen flex flex-col">
-    <div class="p-4 bg-white border-b">
-      <h1 class="text-xl font-bold text-gray-800">Organizational Hierarchy</h1>
-    </div>
-    <div class="flex-1 relative">
-      <OrgChart v-if="treeData" :data="treeData" />
-      <div v-else class="flex justify-center items-center h-full text-lg text-gray-500">
-        Loading hierarchy...
-      </div>
-    </div>
-  </div>
-</template>
-
 <script setup>
 import { ref, onMounted } from 'vue'
 import Papa from 'papaparse'
@@ -49,3 +35,19 @@ onMounted(() => {
   loadCSV()
 })
 </script>
+
+<template>
+  <div class="w-full h-screen flex flex-col">
+    <div class="p-4 bg-white border-b">
+      <h1 class="text-xl font-bold text-gray-800">Organizational Hierarchy</h1>
+    </div>
+    <div class="flex-1 relative">
+      <OrgChart v-if="treeData" :data="treeData" />
+      <div v-else class="flex justify-center items-center h-full text-lg text-gray-500">
+        Loading hierarchy...
+      </div>
+    </div>
+  </div>
+</template>
+
+

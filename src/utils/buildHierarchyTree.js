@@ -38,7 +38,6 @@ export default function buildHierarchyTree(flatData) {
   const employeeMap = {};
   const roots = [];
 
-  // Create employee map with all CSV fields
   for (const emp of flatData) {
     employeeMap[emp['Employee Id']] = {
       id: emp['Employee Id'],
@@ -59,19 +58,17 @@ export default function buildHierarchyTree(flatData) {
     };
   }
 
-  // Build hierarchy
   for (const emp of Object.values(employeeMap)) {
     if (emp.managerId && employeeMap[emp.managerId]) {
       employeeMap[emp.managerId].children.push(emp);
     } else {
-      roots.push(emp); // Top-level node (e.g., CEO)
+      roots.push(emp); 
     }
   }
 
-  // Calculate metrics recursively
   for (const root of roots) {
     calculateMetrics(root);
   }
 
-  return roots[0]; // Return single root node
+  return roots[0]; 
 }

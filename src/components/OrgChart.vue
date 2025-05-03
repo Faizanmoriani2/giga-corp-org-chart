@@ -1,12 +1,4 @@
-<template>
-    <div ref="containerRef" class="w-full h-screen bg-gray-50 overflow-auto">
-      <svg ref="svgRef" class="w-full h-full">
-        <g ref="gRef" />
-      </svg>
-    </div>
-  </template>
-  
-  <script setup>
+<script setup>
   import { ref, onMounted, watch } from 'vue'
   import * as d3 from 'd3'
   
@@ -65,6 +57,7 @@
   
     treeLayout(root)
   
+
     const zoom = d3.zoom()
       .scaleExtent([0.5, 2])
       .on('zoom', (event) => {
@@ -93,20 +86,19 @@
       .attr('transform', d => `translate(${d.x},${d.y})`)
       .attr('class', 'node')
   
-    // Node container with updated colors to match the image
     node.append('rect')
       .attr('x', -180)
       .attr('y', -100)
       .attr('width', 430)
       .attr('height', 300)
       .attr('rx', 8)
-      .attr('fill', '#ffffff')  // White background
-      .attr('stroke', '#1e40af')  // Dark blue border
-      .attr('stroke-width', 2)  // Slightly thicker border
+      .attr('fill', '#ffffff') 
+      .attr('stroke', '#1e40af')  
+      .attr('stroke-width', 2)  
       .attr('class', 'shadow-sm hover:shadow-md transition-shadow')
   
-    // Node content with Tailwind classes
-    const content = node.append('foreignObject')
+  
+      const content = node.append('foreignObject')
       .attr('x', -170)
       .attr('y', -90)
       .attr('width', 400)
@@ -159,15 +151,13 @@
           </div>
         </div>
       `)
-  
-    // Expand/collapse buttons - updated to match image style
     node.filter(d => d._children || d.children)
       .append('circle')
       .attr('r', 16)
       .attr('cy', 180)
       .attr('cx', 30)
       .attr('fill', 'white')
-      .attr('stroke', '#1e40af')  // Dark blue border
+      .attr('stroke', '#1e40af') 
       .attr('stroke-width', 2)
       .attr('class', 'cursor-pointer hover:stroke-blue-600 transition-colors')
       .on('click', (event, d) => toggleNode(d.data))
@@ -180,8 +170,6 @@
       .attr('class', 'text-xs font-medium cursor-pointer text-blue-600 hover:text-blue-800')  // Blue text
       .text(d => d.children ? '−' : '+')
       .on('click', (event, d) => toggleNode(d.data))
-  
-    // Center the chart
     const bounds = g.node().getBBox()
     const dx = bounds.width
     const dy = bounds.height
@@ -192,15 +180,21 @@
     svg.call(zoom.transform, initialTransform)
   }
   </script>
+  <template>
+    <div ref="containerRef" class="w-full h-screen bg-gray-50 overflow-auto">
+      <svg ref="svgRef" class="w-full h-full">
+        <g ref="gRef" />
+      </svg>
+    </div>
+  </template>
   
   <style>
   .link {
     fill: none;
-    stroke: #93c5fd;  /* Lighter blue for connecting lines */
+    stroke: #93c5fd; 
     stroke-width: 1.5px;
     stroke-opacity: 0.7;
   }
-  
   .node text {
     font-family: 'Inter', sans-serif;
   }
