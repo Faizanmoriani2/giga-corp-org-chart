@@ -4,7 +4,7 @@ function calculateMetrics(node) {
     node.managementCost = 0;
     node.totalCost = node.salary;
     node.totalDescendants = 0;
-    node.managementCostRatio = 0; // No managers below
+    node.managementCostRatio = 0; 
     return {
       icCost: node.salary,
       managementCost: 0,

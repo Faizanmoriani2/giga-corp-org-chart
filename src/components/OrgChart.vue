@@ -43,7 +43,7 @@
     const root = d3.hierarchy(props.data)
     root.x0 = width / 2
     root.y0 = 120
-  
+
     root.descendants().forEach(node => {
       if (expandedNodes.value.has(node.data.id)) {
         if (node.children) node._children = null
@@ -56,7 +56,7 @@
     })
   
     treeLayout(root)
-  
+   
 
     const zoom = d3.zoom()
       .scaleExtent([0.5, 2])
