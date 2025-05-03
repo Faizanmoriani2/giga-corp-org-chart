@@ -4,6 +4,7 @@ function calculateMetrics(node) {
     node.managementCost = 0;
     node.totalCost = node.salary;
     node.totalDescendants = 0;
+    node.managementCostRatio = 0; // No managers below
     return {
       icCost: node.salary,
       managementCost: 0,
@@ -25,14 +26,17 @@ function calculateMetrics(node) {
 
   managementCost += node.salary;
   const totalCost = icCost + managementCost;
+  const managementCostRatio = managementCost > 0 ? icCost / managementCost : 0;
 
   node.icCost = icCost;
   node.managementCost = managementCost;
   node.totalCost = totalCost;
   node.totalDescendants = totalDescendants;
+  node.managementCostRatio = parseFloat(managementCostRatio.toFixed(2)); // rounded
 
   return { icCost, managementCost, totalCost, totalDescendants };
 }
+
 
 export default function buildHierarchyTree(flatData) {
   const employeeMap = {};

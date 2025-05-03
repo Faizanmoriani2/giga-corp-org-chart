@@ -113,6 +113,20 @@
           <h3 class="text-lg font-bold text-gray-900 truncate">${d.data.name}</h3>
           <span class="text-sm font-medium text-gray-500 ml-2">${d.data.title}</span>
         </div>
+
+        <div class="flex items-baseline">
+  <span class="text-xs font-medium text-gray-500 mr-1">Mgmt Ratio:</span>
+  <span class="text-sm text-gray-700">
+    ${d.data.managementCostRatio || 0}
+  </span>
+</div>
+
+<div class="flex items-baseline">
+  <span class="text-xs font-medium text-gray-500 mr-1">Level:</span>
+  <span class="text-sm text-gray-700">
+    ${d.data.level || '-'}
+  </span>
+</div>
         
         <div class="grid grid-cols-2 gap-x-4 gap-y-2 flex-grow">
           <div class="flex items-baseline">
